@@ -125,7 +125,7 @@ h1 {
 }
 
 .nav-tab:hover  { color: #ccc; }
-.nav-tab.active { color: #fff; border-bottom-color: #646cff; }
+.nav-tab.active { border-bottom-color: #646cff; }
 
 /* ── Image Editor layout ────────────────────────────────── */
 .ie-container {
@@ -193,7 +193,6 @@ h1 {
   border-radius: 6px;
   color: inherit;
   text-align: center;
-  background: #1a1a1a;
 }
 
 .ie-param-row input[type='number']:focus {
@@ -259,5 +258,4 @@ h1 {
     linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
   background-size: 12px 12px;
   background-position: 0 0, 0 6px, 6px -6px, -6px 0;
-  background-color: #1a1a1a;
 }
