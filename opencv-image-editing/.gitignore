@@ -1,0 +1,7 @@
+# Emscripten build output
+build/
+
+# Pre-built OpenCV WASM libraries and headers (populated by setup_opencv.sh).
+# Not committed because the binaries are large; the pre-built WASM output
+# committed in webapp/public/opencv/ is the deliverable.
+third_party/

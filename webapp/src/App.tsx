@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import { useFibonacci } from './hooks/useFibonacci';
+import ImageEditor from './pages/ImageEditor';
 import './App.css';
 
 const MAX_N = 94; // fib(93) is the last value that fits in u64
 
-function App() {
+type Page = 'fibonacci' | 'image-editor';
+
+// ── Fibonacci page ────────────────────────────────────────────────────────────
+
+function FibonacciPage() {
   const { status, compute, error } = useFibonacci();
   const [n, setN] = useState<number>(10);
   const [sequence, setSequence] = useState<bigint[]>([]);
 
-  function handleSubmit(e: React.SubmitEvent) {
+  function handleSubmit(e: { preventDefault(): void }) {
     e.preventDefault();
     setSequence(compute(n));
   }
@@ -64,4 +69,32 @@ function App() {
   );
 }
 
-export default App;
+// ── Root component with tab navigation ───────────────────────────────────────
+
+export default function App() {
+  const [page, setPage] = useState<Page>('fibonacci');
+
+  return (
+    <>
+      <nav className="nav-tabs">
+        <button
+          type="button"
+          className={`nav-tab${page === 'fibonacci' ? ' active' : ''}`}
+          onClick={() => setPage('fibonacci')}
+        >
+          Fibonacci
+        </button>
+        <button
+          type="button"
+          className={`nav-tab${page === 'image-editor' ? ' active' : ''}`}
+          onClick={() => setPage('image-editor')}
+        >
+          Image Filters
+        </button>
+      </nav>
+
+      {page === 'fibonacci'    && <FibonacciPage />}
+      {page === 'image-editor' && <ImageEditor />}
+    </>
+  );
+}
